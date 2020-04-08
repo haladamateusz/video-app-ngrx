@@ -1,0 +1,16 @@
+<app-video-navbar
+  (columns)="loadColumns()"
+  (list)="loadList()"
+  (favorite)="toggleFavorite()"
+  (sort)="toggleSort()"
+  (delete)="deleteVideos()"
+  (examples)="loadExamples()"
+></app-video-navbar>
+
+<div class="container">
+  <app-video-add-bar></app-video-add-bar>
+  <app-video-list *ngIf="displayList$|async"
+    [videoCollection]="videoCollection$|async"></app-video-list>
+  <app-video-columns *ngIf="displayColumns$|async"
+    [videoCollection]="videoCollection$|async"></app-video-columns>
+</div>

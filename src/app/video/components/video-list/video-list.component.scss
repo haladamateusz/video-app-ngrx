@@ -1,0 +1,44 @@
+.table-img{
+  max-height: 80px;
+  cursor: pointer;
+}
+
+h1, button, div#data {
+  margin: 15px 0;
+}
+
+.jim-table-responsive > table > tbody > tr > td{
+  text-align: center;
+}
+
+/* CSS for smaller view spaces */
+@media screen and (max-width: 768px) {
+
+  /* hide table headings */
+  .jim-table-responsive table thead {
+    display: none;
+  }
+
+  /* treat rows like divs */
+  .jim-table-responsive table tr {
+    display: block;
+    margin-top: 5px;
+  }
+
+  /* treat columns like divs */
+  .jim-table-responsive table td {
+    display: block;
+    text-align: right; /* text to right */
+  }
+
+  .jim-table-responsive > table > tbody > tr > td{
+    text-align: right;
+  }
+
+  /* this part is ugly, but necessary to show label on left */
+  .jim-table-responsive table td:before {
+    content: attr(data-label);
+    float: left; /* label to left */
+    font-weight: 700;
+  }
+}

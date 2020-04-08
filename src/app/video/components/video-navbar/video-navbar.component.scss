@@ -1,0 +1,38 @@
+
+button{
+  cursor: pointer;
+}
+
+@media only screen and (max-width: 991px) {
+  .menu-item-1::after {
+    content: ' Load test movies';
+    color: white;
+  }
+  .menu-item-2::after {
+    content: ' Grid view';
+    color: white;
+  }
+
+  .menu-item-3::after {
+    content: ' List view';
+    color: white;
+  }
+
+  .menu-item-4::after {
+    content: ' Show Favorites';
+    color: white;
+
+  }
+
+  .menu-item-5::after {
+    content: 'Sort A-Z or Z-A';
+    color: white;
+
+  }
+  .menu-item-6::after {
+    content: 'Delete movies database';
+    color: white;
+
+  }
+
+}
