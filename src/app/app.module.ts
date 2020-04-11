@@ -12,6 +12,8 @@ import {environment} from '../environments/environment.prod';
 import {AppRoutingModule} from './app-routing-module';
 import {VideoModule} from './video/video.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {VideoService} from './video/video.service';
+import {HttpClientModule} from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -29,8 +31,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     AppRoutingModule,
     VideoModule,
     BrowserAnimationsModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [VideoService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

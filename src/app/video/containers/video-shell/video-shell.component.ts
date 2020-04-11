@@ -8,8 +8,7 @@ import * as videoActions from './../../state/video.actions';
 
 @Component({
   selector: 'app-video-shell',
-  templateUrl: './video-shell.component.html',
-  styleUrls: ['./video-shell.component.scss']
+  templateUrl: './video-shell.component.html'
 })
 export class VideoShellComponent implements OnInit {
   displayColumns$: Observable<boolean>;
@@ -20,7 +19,7 @@ export class VideoShellComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.store.dispatch(new videoActions.InitLoad());
+    this.store.dispatch(new videoActions.LoadLocalStorage());
     this.displayColumns$ = this.store.pipe(select(fromVideo.getShowColumns));
     this.displayList$ = this.store.pipe(select(fromVideo.getShowList));
     this.videoCollection$ = this.store.pipe(select(fromVideo.getVideos));
@@ -47,6 +46,13 @@ export class VideoShellComponent implements OnInit {
   deleteVideos() {
     this.store.dispatch(new videoActions.DeleteAllVideos());
   }
-
-
+  deleteVideo(event: string) {
+    this.store.dispatch(new videoActions.DeleteVideo(event));
+  }
+  favoriteVideo(event: string) {
+    this.store.dispatch(new videoActions.FavoriteVideo(event));
+  }
+  addVideo(event: string) {
+    this.store.dispatch(new videoActions.AddVideo(event));
+  }
 }

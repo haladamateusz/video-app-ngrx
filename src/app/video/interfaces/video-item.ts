@@ -5,4 +5,6 @@ export interface VideoItem {
   dateAdded: string;
   favorite: boolean;
   title: string;
+  id: string;
+  type?: string;
 }

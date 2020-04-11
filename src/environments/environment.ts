@@ -3,8 +3,11 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  apiKey: 'AIzaSyCBsXCl90xtQnDAJfhzmUR5L6KQhwrU79w',
+  vimeoKey: 'Bearer b62ccf9f6004fffda105fa805e355066'
 };
+
 
 /*
  * For easier debugging in development mode, you can import the following file

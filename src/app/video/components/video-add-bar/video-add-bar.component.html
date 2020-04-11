@@ -3,9 +3,9 @@
     <form class=" mb-5">
       <mat-form-field >
         <mat-label>Paste url here</mat-label>
-        <input matInput placeholder="Ex. https://youtu.be/vJ3a_AuEW18">
+        <input [(ngModel)]="videoURL" name="first" matInput placeholder="Ex. https://youtu.be/vJ3a_AuEW18">
       </mat-form-field>
-      <button mat-stroked-button color="primary">Add video</button>
+      <button (click)="addVideo()" mat-stroked-button color="primary">Add video</button>
     </form>
     <mat-divider class="my-4"></mat-divider>
   </div>

@@ -18,17 +18,26 @@ import {MatButtonModule} from '@angular/material/button';
 import {VideoListComponent} from './components/video-list/video-list.component';
 import {VideoColumnsComponent} from './components/video-columns/video-columns.component';
 import { VideoAddBarComponent } from './components/video-add-bar/video-add-bar.component';
-
+import {FormsModule} from '@angular/forms';
+import {MAT_SNACK_BAR_DEFAULT_OPTIONS, MatSnackBarConfig, MatSnackBarModule} from '@angular/material/snack-bar';
 
 const productRoutes: Routes = [
   {path: '', component: VideoShellComponent}
 ];
+
+const MAT_GLOBAL_CONFIG: MatSnackBarConfig = {
+  duration: 2500,
+  verticalPosition: 'bottom',
+  horizontalPosition: 'center'
+};
+
 
 @NgModule({
   declarations: [VideoNavbarComponent, VideoShellComponent, VideoListComponent, VideoColumnsComponent, VideoAddBarComponent],
   exports: [
     VideoShellComponent
   ],
+  providers: [{provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: MAT_GLOBAL_CONFIG}],
   imports: [
     CommonModule,
     RouterModule.forChild(productRoutes),
@@ -40,8 +49,10 @@ const productRoutes: Routes = [
     MatInputModule,
     MatDividerModule,
     MatTooltipModule,
+    MatSnackBarModule,
     MatIconModule,
     MatDialogModule,
+    FormsModule,
   ]
 })
 export class VideoModule { }

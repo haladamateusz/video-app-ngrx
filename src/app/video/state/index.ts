@@ -1,6 +1,7 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 import * as fromRoot from '../../state/app.state';
 import * as fromVideos from './video.reducer';
+import {VideoItem} from '../interfaces/video-item';
 
 
 export interface State extends fromRoot.State {
@@ -22,3 +23,7 @@ export const getVideos = createSelector(
   getProductFeatureState,
   state => state.videoItems
 );
+
+export function setLocalStorageVideos(videoItems: VideoItem[]): void {
+  localStorage.setItem('videoItems', JSON.stringify({videoItems}));
+}

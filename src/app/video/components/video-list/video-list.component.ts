@@ -1,4 +1,4 @@
-import {Component, Input} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {VideoItem} from '../../interfaces/video-item';
 
 @Component({
@@ -8,7 +8,14 @@ import {VideoItem} from '../../interfaces/video-item';
 })
 export class VideoListComponent  {
   @Input() videoCollection: VideoItem[];
+  @Output() delete = new EventEmitter<string>();
+  @Output() changeFavorite = new EventEmitter<string>();
   constructor() { }
 
-
+  deleteVideo(id: string) {
+    this.delete.emit(id);
+  }
+  favoriteVideo(id: string) {
+    this.changeFavorite.emit(id);
+  }
 }

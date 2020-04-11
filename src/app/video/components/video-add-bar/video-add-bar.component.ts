@@ -1,19 +1,18 @@
-import {Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 
 @Component({
   selector: 'app-video-add-bar',
   templateUrl: './video-add-bar.component.html',
   styleUrls: ['./video-add-bar.component.scss']
 })
-export class VideoAddBarComponent implements OnInit {
-
+export class VideoAddBarComponent {
+  @Output() videoEmitter = new EventEmitter<string>();
+  videoURL: string;
 
   constructor() {
   }
 
-  ngOnInit(): void {
+  addVideo() {
+    this.videoEmitter.emit(this.videoURL);
   }
-
-
-
 }

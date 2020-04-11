@@ -6,7 +6,7 @@
 
 <div *ngIf="videoCollection.length>0" class="row">
 
-  <div class="col-sm-12 jim-table-responsive">
+  <div class="col-sm-12 video-table-responsive">
     <table class="table table-striped">
       <thead>
       <tr>
@@ -32,14 +32,14 @@
         <td data-label="Date added" class="align-middle "> {{video.dateAdded}}</td>
         <td class="align-middle text-center">
           <button mat-button>VIEW</button>
-          <button mat-button>DELETE</button>
+          <button (click)="deleteVideo(video.title)"mat-button>DELETE</button>
           <button *ngIf="video.favorite" mat-icon-button color="accent"
                   aria-label="Example icon-button with a heart icon">
-            <mat-icon>favorite</mat-icon>
+            <mat-icon (click)="favoriteVideo(video.id)">favorite</mat-icon>
           </button>
           <button *ngIf="!video.favorite" mat-icon-button color="accent"
                   aria-label="Example icon-button with a heart icon">
-            <mat-icon>favorite_border</mat-icon>
+            <mat-icon (click)="favoriteVideo(video.id)">favorite_border</mat-icon>
           </button>
         </td>
       </tr>

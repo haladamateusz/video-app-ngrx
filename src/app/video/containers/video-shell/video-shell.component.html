@@ -8,9 +8,16 @@
 ></app-video-navbar>
 
 <div class="container">
-  <app-video-add-bar></app-video-add-bar>
-  <app-video-list *ngIf="displayList$|async"
-    [videoCollection]="videoCollection$|async"></app-video-list>
+  <app-video-add-bar
+  (videoEmitter)="addVideo($event)"></app-video-add-bar>
+
   <app-video-columns *ngIf="displayColumns$|async"
+                     (delete)="deleteVideo($event)"
+                     (changeFavorite)="favoriteVideo($event)"
     [videoCollection]="videoCollection$|async"></app-video-columns>
+
+  <app-video-list *ngIf="displayList$|async"
+                  (delete)="deleteVideo($event)"
+                  (changeFavorite)="favoriteVideo($event)"
+                  [videoCollection]="videoCollection$|async"></app-video-list>
 </div>
