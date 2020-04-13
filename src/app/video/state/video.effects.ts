@@ -69,7 +69,13 @@ export class VideoEffects {
           }
           const videoData = this.videoService.getVideoItems();
           this.snackbar.open('Successfully loaded examples', '', {panelClass: 'toast-success'});
-          return new videoActions.LoadExamplesSuccess(videoData);
+          // for avoiding loading example list twice or more
+          const videoDataWithoutDuplicates = videoData.filter((elem, index, self) => self.findIndex(
+            (video) => {
+              return (video.id === elem.id);
+            }) === index);
+          this.videoService.setLocalStorageVideos(videoDataWithoutDuplicates);
+          return new videoActions.LoadExamplesSuccess(videoDataWithoutDuplicates);
         }),
         catchError(err => of(new videoActions.LoadExamplesFail(err)))
       );
