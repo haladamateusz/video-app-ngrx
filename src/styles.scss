@@ -12,3 +12,56 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   color: white;
   background: #ba000d;
 }
+
+.plyr--full-ui input[type=range]{
+  -webkit-appearance:none;
+  background:0 0;
+  border:0;
+  border-radius:26px;
+  color:#ff4281 !important;
+  display:block;
+  height:19px;
+  margin:0;
+  padding:0;
+  transition:box-shadow .3s ease;
+  width:100%
+}
+
+.plyr--video .plyr__control.plyr__tab-focus,.plyr--video .plyr__control:hover,.plyr--video .plyr__control[aria-expanded=true]{
+  background:#ff4281 !important;
+  color:#fff
+}
+.plyr__control--overlaid{
+  background: #ff4281 !important;
+  border:0;
+  border-radius:100%;
+  color:#fff;
+  display:none;
+  left:50%;
+  padding:15px;
+  position:absolute;
+  top:50%;
+  transform:translate(-50%,-50%);
+  z-index:2
+}
+
+@media only screen and (max-width: 1114px) {
+  .plyr--stopped .plyr__controls {
+
+    opacity: 0;
+
+  }
+
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+}
+
+.ngx-pagination {
+  padding-left: 0;
+}
+.ngx-pagination .current{
+  background: #ff4281 !important;
+}

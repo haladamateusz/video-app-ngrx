@@ -4,7 +4,7 @@
   </div>
 </div>
 
-<div *ngIf="videoCollection.length>0" class="row">
+<div #scrollTop *ngIf="videoCollection.length>0" class="row">
 
   <div class="col-sm-12 video-table-responsive">
     <table class="table table-striped">
@@ -20,10 +20,8 @@
       </thead>
 
       <tbody>
-      <tr *ngFor="let video of videoCollection" class="row-car">
-        <!--     | paginate: {itemsPerPage: perPage, currentPage: page}; index as index"-->
-
-        <td data-label=""><img class="table-img" src="{{video.img}}" alt="">
+      <tr *ngFor="let video of videoCollection| paginate: {itemsPerPage:itemsPerPage, currentPage:currentPage}" class="row-car">
+        <td data-label=""><img (click)="viewVideo(video.id,video.type)" class="table-img" src="{{video.img}}" alt="Video image">
         </td>
         <td data-label="Title" class="align-middle "> {{video.title}}</td>
         <td data-label="views" *ngIf="video.views!==null" class="align-middle"> {{video.views}}</td>
@@ -31,14 +29,13 @@
         <td data-label="Likes" class="align-middle "> {{video.likes}}</td>
         <td data-label="Date added" class="align-middle "> {{video.dateAdded}}</td>
         <td class="align-middle text-center">
-          <button mat-button>VIEW</button>
+          <button (click)="viewVideo(video.id,video.type)" mat-button>VIEW</button>
           <button (click)="deleteVideo(video.title)"mat-button>DELETE</button>
           <button *ngIf="video.favorite" mat-icon-button color="accent"
                   aria-label="Example icon-button with a heart icon">
             <mat-icon (click)="favoriteVideo(video.id)">favorite</mat-icon>
           </button>
-          <button *ngIf="!video.favorite" mat-icon-button color="accent"
-                  aria-label="Example icon-button with a heart icon">
+          <button *ngIf="!video.favorite" mat-icon-button color="accent">
             <mat-icon (click)="favoriteVideo(video.id)">favorite_border</mat-icon>
           </button>
         </td>
@@ -47,9 +44,8 @@
       </tbody>
     </table>
   </div>
-
-  <!--  <div class="col-sm-12 text-center">-->
-  <!--    <pagination-controls previousLabel="Prev"-->
-  <!--                         nextLabel="Next" (pageChange)="onPageChange($event, listTop)"></pagination-controls>-->
-  <!--  </div>-->
+  <div class="col-sm-12 text-center">
+    <pagination-controls previousLabel="Prev"
+                         nextLabel="Next" (pageChange)="onPageChange($event, scrollTop)"></pagination-controls>
+  </div>
 </div>

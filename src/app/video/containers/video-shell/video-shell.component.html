@@ -11,13 +11,20 @@
   <app-video-add-bar
   (videoEmitter)="addVideo($event)"></app-video-add-bar>
 
-  <app-video-columns *ngIf="displayColumns$|async"
+  <app-video-columns #cols
+                      *ngIf="displayColumns$|async"
                      (delete)="deleteVideo($event)"
                      (changeFavorite)="favoriteVideo($event)"
+                     (view)="openModal($event)"
+                     [currentPage]="currentPage$|async"
+                     [itemsPerPage]="itemsPerPage$|async"
     [videoCollection]="videoCollection$|async"></app-video-columns>
 
   <app-video-list *ngIf="displayList$|async"
                   (delete)="deleteVideo($event)"
                   (changeFavorite)="favoriteVideo($event)"
-                  [videoCollection]="videoCollection$|async"></app-video-list>
+                  (view)="openModal($event)"
+                  [currentPage]="currentPage$|async"
+                  [itemsPerPage]="itemsPerPage$|async"
+     [videoCollection]="videoCollection$|async"></app-video-list>
 </div>

@@ -1,5 +1,5 @@
 import {videoActions, videoActionTypes} from './video.actions';
-import {VideoItem} from '../interfaces/video-item';
+import {VideoItem} from '@video/interfaces/video-item';
 
 export interface VideoState {
   videoItems: VideoItem[];
@@ -9,7 +9,11 @@ export interface VideoState {
   favorites: boolean;
   reverse: boolean;
   error?: string;
+  currentPage: number;
+  itemsPerPage: number;
 }
+
+
 
 const initialState: VideoState = {
   videoItems: [],
@@ -17,7 +21,9 @@ const initialState: VideoState = {
   showColumns: true,
   showList: false,
   favorites: false,
-  reverse: false
+  reverse: false,
+  currentPage: 1,
+  itemsPerPage: 6
 };
 
 
@@ -38,7 +44,9 @@ export function reducer(state = initialState, action: videoActions) {
       };
     case videoActionTypes.LoadExamplesSuccess:
       return {
-        ...state
+        ...state,
+        videoItems: action.payload,
+        videoItemsAll: action.payload,
       };
     case videoActionTypes.LoadLocalStorageSuccess:
       return {
@@ -58,7 +66,8 @@ export function reducer(state = initialState, action: videoActions) {
       return {
         ...state,
         favorites: fav,
-        videoItems: currentVideos
+        videoItems: currentVideos,
+        currentPage: 1
       };
     case videoActionTypes.ToggleSort:
       const reversedVideos = state.videoItems.slice().reverse();
@@ -68,7 +77,7 @@ export function reducer(state = initialState, action: videoActions) {
         videoItems: reversedVideos,
         reverse
       };
-    case videoActionTypes.DeleteAllVideos:
+    case videoActionTypes.DeleteAllVideosSuccess:
       return {
         ...state,
         videoItems: [],
@@ -81,12 +90,11 @@ export function reducer(state = initialState, action: videoActions) {
           state.reverse ? action.payload.filter(video => video.favorite === true).reverse()
             : action.payload.filter(video => video.favorite === true)
           : state.reverse ? [...action.payload.slice().reverse()] : [...action.payload],
-        videoItemsAll: action.payload
+        videoItemsAll: action.payload,
       };
     }
     case videoActionTypes.FavoriteVideoSuccess: {
       return {
-        // dorobic wykrywanie czy jestesmy w ulubionyhc
         ...state,
         videoItems: state.favorites ?
           state.reverse ? action.payload.filter(video => video.favorite === true).reverse()
@@ -94,7 +102,7 @@ export function reducer(state = initialState, action: videoActions) {
           : state.reverse ? [...action.payload.slice().reverse()] : [...action.payload],
         videoItemsAll: [...action.payload]
       };
-    } // s
+    }
     case videoActionTypes.AddVideoSuccess: {
       return {
         ...state,
@@ -107,6 +115,7 @@ export function reducer(state = initialState, action: videoActions) {
     case videoActionTypes.AddVideoFail:
     case videoActionTypes.DeleteVideoFail:
     case videoActionTypes.FavoriteVideoFail:
+    case videoActionTypes.DeleteAllVideosFail:
     case videoActionTypes.LoadExamplesFail:
     case videoActionTypes.LoadLocalStorageFail: {
       console.log(state.error);
@@ -116,12 +125,3 @@ export function reducer(state = initialState, action: videoActions) {
       return state;
   }
 }
-
-
-// kontrolka reverse
-// snackbary
-// sprawdzanie czy jest w bazie danych
-// wyswietlanie errorow w consoli
-// vimeo
-// TODO: paginacja
-// TODO: modal

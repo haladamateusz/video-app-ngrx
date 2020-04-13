@@ -1,4 +1,4 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Output} from '@angular/core';
 
 @Component({
   selector: 'app-video-add-bar',
@@ -12,7 +12,7 @@ export class VideoAddBarComponent {
   constructor() {
   }
 
-  addVideo() {
+  addVideo(): void {
     this.videoEmitter.emit(this.videoURL);
   }
 }

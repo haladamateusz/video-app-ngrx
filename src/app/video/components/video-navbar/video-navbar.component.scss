@@ -5,32 +5,32 @@ button{
 
 @media only screen and (max-width: 991px) {
   .menu-item-1::after {
-    content: ' Load test movies';
+    content: ' Load example movies database';
     color: white;
   }
   .menu-item-2::after {
-    content: ' Grid view';
+    content: ' Show videos as grid';
     color: white;
   }
 
   .menu-item-3::after {
-    content: ' List view';
+    content: ' Show videos as table';
     color: white;
   }
 
   .menu-item-4::after {
-    content: ' Show Favorites';
+    content: ' Show favorites/all';
     color: white;
 
   }
 
   .menu-item-5::after {
-    content: 'Sort A-Z or Z-A';
+    content: ' Sort by date';
     color: white;
 
   }
   .menu-item-6::after {
-    content: 'Delete movies database';
+    content: ' Delete all videos';
     color: white;
 
   }

@@ -1,8 +1,7 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark ">
   <a href="#" class="navbar-brand d-flex w-50 mr-auto">Favorite Videos</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse"
-          data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-          aria-label="Toggle navigation">
+          data-target="#navbarSupportedContent">
     <span class="navbar-toggler-icon"></span>
   </button>
 
@@ -11,7 +10,7 @@
       <li class="nav-item ">
         <a class="nav-link">
           <button (click)="loadExamples()" class="m-1 menu-item-1" matTooltip="Load example movies database"
-                  aria-label="Button that displays a tooltip when focused or hovered over" color="accent"
+                  color="accent"
                   mat-button>
             <mat-icon>featured_play_list</mat-icon>
           </button>
@@ -19,8 +18,8 @@
       </li>
       <li class="nav-item">
         <a class="nav-link">
-          <button  (click)="loadColumns()" class="m-1 menu-item-2" matTooltip="Show videos as grid"
-                  aria-label="Button that displays a tooltip when focused or hovered over" color="accent"
+          <button (click)="loadColumns()" class="m-1 menu-item-2" matTooltip="Show videos as grid"
+                  color="accent"
                   mat-button>
             <mat-icon>grid_on</mat-icon>
           </button>
@@ -29,7 +28,7 @@
       <li class="nav-item">
         <a class="nav-link">
           <button (click)="loadList()" class="m-1 menu-item-3" matTooltip="Show videos as table"
-                  aria-label="Button that displays a tooltip when focused or hovered over" color="accent"
+                  color="accent"
                   mat-button>
             <mat-icon>list</mat-icon>
           </button>
@@ -37,17 +36,17 @@
       </li>
       <li class="nav-item">
         <a class="nav-link">
-          <button (click)="toggleFavorite()" class="m-1 menu-item-4" matTooltip="Shows favorites/all"
-                  aria-label="Button that displays a tooltip when focused or hovered over" color="accent"
+          <button (click)="toggleFavorite()" class="m-1 menu-item-4" matTooltip="Show favorites/all"
+                  color="accent"
                   mat-button>
             <mat-icon>favorite</mat-icon>
           </button>
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" >
-          <button (click)="toggleSort()" class="m-1 menu-item-5" matTooltip="Sort by Date"
-                  aria-label="sort from A-Z or Z-A" color="accent"
+        <a class="nav-link">
+          <button (click)="toggleSort()" class="m-1 menu-item-5" matTooltip="Sort by date"
+                  color="accent"
                   mat-button>
             <mat-icon>sort_by_alpha</mat-icon>
           </button>
@@ -55,8 +54,8 @@
       </li>
       <li class="nav-item">
         <a class="nav-link">
-          <button (click)="deleteVideos()" class="m-1 menu-item-6" matTooltip="Delete videos database"
-                  aria-label="sort from newest to oldest or from oldest to newest" color="accent"
+          <button (click)="deleteVideos()" class="m-1 menu-item-6" matTooltip="Delete all videos"
+                  color="accent"
                   mat-button>
             <mat-icon>delete</mat-icon>
           </button>

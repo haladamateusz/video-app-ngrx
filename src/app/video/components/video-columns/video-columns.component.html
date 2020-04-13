@@ -4,40 +4,35 @@
   </div>
 </div>
 
-<div *ngIf="videoCollection.length>0" class="row">
-  <div *ngFor="let video of videoCollection" class="col-md-4 my-3">
-    <!--   | paginate: {itemsPerPage: perPage, currentPage: page};index as index-->
-
+<div #scrollTop *ngIf="videoCollection.length>0" class="row">
+  <div *ngFor="let video of videoCollection| paginate: {itemsPerPage:itemsPerPage, currentPage:currentPage}" class="col-md-4 my-3">
     <mat-card class=" m-1 example-card">
-      <img mat-card-image src="{{video.img}}" alt="Photo of a Shiba Inu">
+      <img mat-card-image (click)="viewVideo(video.id,video.type)" src="{{video.img}}" alt="Video image">
       <mat-card-header>
-        <!--        <div mat-card-avatar class="example-header-image"></div>-->
         <mat-card-title>{{video.title}}</mat-card-title>
-        <!--        <mat-card-subtitle>Dog Breed</mat-card-subtitle>-->
       </mat-card-header>
       <mat-card-content>
-        <p class="pl-3">Views: {{video.views}}</p>
+        <p *ngIf="video.views!==null" class="pl-3">Views: {{video.views}}</p>
+        <p *ngIf="video.views===null" class="pl-3">Views: 🤐</p>
         <p class="pl-3">Likes: {{video.likes}}</p>
         <p class="pl-3 mat-small">Date added: {{video.dateAdded}}</p>
 
       </mat-card-content>
       <mat-card-actions>
-        <button mat-button>VIEW</button>
+        <button (click)="viewVideo(video.id,video.type)" mat-button>VIEW</button>
         <button (click)="deleteVideo(video.title)"mat-button>DELETE</button>
-        <button *ngIf="video.favorite" mat-icon-button color="accent"
-                aria-label="Example icon-button with a heart icon">
+        <button *ngIf="video.favorite" mat-icon-button color="accent">
           <mat-icon (click)="favoriteVideo(video.id)">favorite</mat-icon>
         </button>
-        <button *ngIf="!video.favorite" mat-icon-button color="accent"
-                aria-label="Example icon-button with a heart icon">
+        <button *ngIf="!video.favorite" mat-icon-button color="accent">
           <mat-icon (click)="favoriteVideo(video.id)">favorite_border</mat-icon>
         </button>
       </mat-card-actions>
     </mat-card>
   </div>
-  <!--  <div *ngIf="videoCollection.length>perPage" class="col-sm-12 text-center">-->
-  <!--    <pagination-controls previousLabel="Prev"-->
-  <!--                         nextLabel="Next" (pageChange)="onPageChange($event, top)"></pagination-controls>-->
-  <!--  </div>-->
 
+  <div class="col-sm-12 text-center">
+    <pagination-controls previousLabel="Prev"
+                         nextLabel="Next" (pageChange)="onPageChange($event, scrollTop)"></pagination-controls>
+  </div>
 </div>

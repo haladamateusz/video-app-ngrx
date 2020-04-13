@@ -7,21 +7,31 @@ import {VideoItem} from '../interfaces/video-item';
 export interface State extends fromRoot.State {
   videos: fromVideos.VideoState;
 }
-const getProductFeatureState = createFeatureSelector<fromVideos.VideoState>('videos');
+const getVideoFeatureState = createFeatureSelector<fromVideos.VideoState>('videos');
 
 export const getShowColumns = createSelector(
-  getProductFeatureState,
+  getVideoFeatureState,
   state => state.showColumns
 );
 
 export const getShowList = createSelector(
-  getProductFeatureState,
+  getVideoFeatureState,
   state => state.showList
 );
 
 export const getVideos = createSelector(
-  getProductFeatureState,
+  getVideoFeatureState,
   state => state.videoItems
+);
+
+export const getCurrentPage = createSelector(
+  getVideoFeatureState,
+  state => state.currentPage
+);
+
+export const getItemsPerPage = createSelector(
+  getVideoFeatureState,
+  state => state.itemsPerPage
 );
 
 export function setLocalStorageVideos(videoItems: VideoItem[]): void {

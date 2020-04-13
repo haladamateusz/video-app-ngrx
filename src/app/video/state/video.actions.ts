@@ -2,8 +2,8 @@ import {Action} from '@ngrx/store';
 import {VideoItem} from '../interfaces/video-item';
 
 export enum videoTypes {
-  Youtube = '[Type] Youtube',
-  Vimeo = '[Type] Vimeo'
+  Youtube = 'youtube',
+  Vimeo = 'vimeo'
 }
 
 export enum videoActionTypes {
@@ -19,6 +19,8 @@ export enum videoActionTypes {
   ToggleFilter = '[Video] Toggle Filter',
   ToggleSort = '[Video] Toggle Sort',
   DeleteAllVideos = '[Video] Delete All Videos',
+  DeleteAllVideosFail = '[Video] Delete All Videos Fail',
+  DeleteAllVideosSuccess = '[Video] Delete All Videos Success',
   DeleteVideo = '[Video] Delete Video',
   DeleteVideoSuccess = '[Video] Delete Video Success',
   DeleteVideoFail = '[Video] Delete Video Failure',
@@ -92,6 +94,18 @@ export class ToggleFilter implements Action {
 
 export class DeleteAllVideos implements Action {
   readonly type = videoActionTypes.DeleteAllVideos;
+}
+
+export class DeleteAllVideosSuccess implements Action {
+  readonly type = videoActionTypes.DeleteAllVideosSuccess;
+}
+
+export class DeleteAllVideosFail implements Action {
+  readonly type = videoActionTypes.DeleteAllVideosFail;
+
+  constructor(public payload: string) {
+
+  }
 }
 
 export class DeleteVideo {
@@ -177,6 +191,8 @@ export type videoActions = InitLoad
   | ToggleSort
   | ToggleFilter
   | DeleteAllVideos
+  | DeleteAllVideosSuccess
+  | DeleteAllVideosFail
   | DeleteVideo
   | DeleteVideoFail
   | DeleteVideoSuccess

@@ -20,6 +20,9 @@ import {VideoColumnsComponent} from './components/video-columns/video-columns.co
 import { VideoAddBarComponent } from './components/video-add-bar/video-add-bar.component';
 import {FormsModule} from '@angular/forms';
 import {MAT_SNACK_BAR_DEFAULT_OPTIONS, MatSnackBarConfig, MatSnackBarModule} from '@angular/material/snack-bar';
+import { VideoModalComponent } from './components/video-modal/video-modal.component';
+import {PlyrModule} from 'ngx-plyr';
+import {NgxPaginationModule} from 'ngx-pagination';
 
 const productRoutes: Routes = [
   {path: '', component: VideoShellComponent}
@@ -33,7 +36,7 @@ const MAT_GLOBAL_CONFIG: MatSnackBarConfig = {
 
 
 @NgModule({
-  declarations: [VideoNavbarComponent, VideoShellComponent, VideoListComponent, VideoColumnsComponent, VideoAddBarComponent],
+  declarations: [VideoNavbarComponent, VideoShellComponent, VideoListComponent, VideoColumnsComponent, VideoAddBarComponent, VideoModalComponent],
   exports: [
     VideoShellComponent
   ],
@@ -53,6 +56,9 @@ const MAT_GLOBAL_CONFIG: MatSnackBarConfig = {
     MatIconModule,
     MatDialogModule,
     FormsModule,
-  ]
+    PlyrModule,
+    NgxPaginationModule,
+  ],
+  entryComponents: [VideoModalComponent]
 })
 export class VideoModule { }
