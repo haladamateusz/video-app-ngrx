@@ -1,12 +1,13 @@
 import {Injectable} from '@angular/core';
 import {Actions, Effect, ofType} from '@ngrx/effects';
-import {VideoService} from '../video.service';
-import {catchError, map, mergeMap} from 'rxjs/operators';
+import {VideoService} from '../services/video.service';
+import {catchError, map, mergeMap, tap} from 'rxjs/operators';
 import {Observable, of} from 'rxjs';
 import {Action} from '@ngrx/store';
 import * as videoActions from './video.actions';
 import {videoActionTypes, videoTypes} from './video.actions';
 import {MatSnackBar} from '@angular/material/snack-bar';
+import {YoutubeService} from '@video/services/youtube.service';
 
 
 @Injectable()
@@ -15,6 +16,7 @@ export class VideoEffects {
 
   constructor(private actions$: Actions,
               private videoService: VideoService,
+              private youtubeService: YoutubeService,
               private snackbar: MatSnackBar) {
   }
 
@@ -64,7 +66,7 @@ export class VideoEffects {
       return this.videoService.getVideo(defaultVideoItem).pipe(
         map((newVideos) => {
           for (const newVideo of newVideos.items) {
-            const videoObject = this.videoService.createYoutubeVideoObject(newVideo);
+            const videoObject = this.youtubeService.createYoutubeVideoObject(newVideo);
             this.videoService.addVideo(videoObject);
           }
           const videoData = this.videoService.getVideoItems();
@@ -80,7 +82,6 @@ export class VideoEffects {
         catchError(err => of(new videoActions.LoadExamplesFail(err)))
       );
     }));
-
 
   @Effect()
   addVideo$: Observable<Action> = this.actions$.pipe(
@@ -111,7 +112,7 @@ export class VideoEffects {
   @Effect()
   updateVideo$: Observable<Action> = this.actions$.pipe(
     ofType(videoActions.videoActionTypes.FavoriteVideo),
-    map((action: videoActions.FavoriteVideo) => {
+    tap((action: videoActions.FavoriteVideo) => {
       const videoItems = this.videoService.getVideoItems();
       const index = videoItems.map((val) => val.id).indexOf(action.payload);
       videoItems[index].favorite = !videoItems[index].favorite;
@@ -120,6 +121,4 @@ export class VideoEffects {
     }),
     catchError(err => of(new videoActions.FavoriteVideoFail(err)))
   );
-
-
 }

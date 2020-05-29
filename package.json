@@ -30,6 +30,7 @@
     "bootstrap": "^4.4.1",
     "jquery": "^3.4.1",
     "moment": "^2.24.0",
+    "ngrx-store-localstorage": "^9.0.0",
     "ngx-pagination": "^5.0.0",
     "ngx-plyr": "^4.0.0",
     "plyr": "^3.5.10",
