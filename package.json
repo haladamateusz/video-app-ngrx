@@ -29,7 +29,7 @@
     "@ngrx/store-devtools": "^9.1.0",
     "bootstrap": "^4.4.1",
     "jquery": "^3.5.0",
-    "moment": "^2.24.0",
+    "moment": "^2.29.4",
     "ngrx-store-localstorage": "^9.0.0",
     "ngx-pagination": "^5.0.0",
     "ngx-plyr": "^4.0.0",
